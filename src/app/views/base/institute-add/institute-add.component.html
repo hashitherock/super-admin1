@@ -1,0 +1,125 @@
+<c-row>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-body>
+        <form cForm class="row g-3" [formGroup]="institutPost" (ngSubmit)="intSubmit()">
+          <c-col xs="12">
+            <label cLabel for="inputAddress">Institute Name</label>
+            <input formControlName="name" cFormControl id="inputInstituteName" placeholder="Institute Name" />
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.name && errorMessage.name.length">{{errorMessage.name[0]}}</p>
+          </c-col>
+
+
+          <!-- <c-col xs="12">
+            <label cLabel for="inputAddress">Address</label>
+            <input cFormControl id="inputAddress" placeholder="1234 Main St" />
+          </c-col> -->
+
+          <c-col md="6">
+            <label cLabel for="inputState1">Institute Category</label>
+            <!-- <select formControlName="instituteCat" cSelect id="inputState" (change)="getSubType(select)" #select> -->
+            <select formControlName="parent_category_id" cSelect id="inputState11" (change)="getSubType(select)"
+              #select>
+              <!-- <option>Choose...</option> -->
+              <!-- <option  *ngFor="let item of instituteData" [value]="item.instituteName">{{item.instituteName}}</option> -->
+              <option *ngFor="let item of catagoryData" [value]="item.slug">
+                {{ item.name }}
+              </option>
+            </select>
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.parent_category_id && errorMessage.parent_category_id.length">{{errorMessage.parent_category_id[0]}}</p>
+          </c-col>
+
+          <c-col md="6" class="test">
+            <label cLabel for="2">Institute sub type</label>
+            <mat-form-field appearance="fill" cSelect id="inputState21" appearance="outline" class="insSub-mat-form-field">
+              <mat-label>Select institute sub type</mat-label>
+              <mat-select class="inst-mat-select"  formControlName="categories_id" multiple>
+                <mat-option *ngFor="let item of subCatagoryData" value="{{ item.id }}">{{ item.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.slug && errorMessage.slug.length">{{errorMessage.slug[0]}}</p>
+          </c-col>
+
+          <c-col md="6">
+            <label cLabel for="inlineFormSelectPref">Institute Type</label>
+            <select formControlName="type" cSelect id="inlineFormSelectPref" >
+              <option>Choose...</option>
+              <option value="government">Government</option>
+              <option value="private">Private</option>
+            </select>
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.type && errorMessage.type.length">{{errorMessage.type[0]}}</p>
+          </c-col>
+
+
+          
+            
+            
+            <c-col md="6">
+            <label cLabel for="inputState4">Union Name</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select [disableOptionCentering]="true" #select placeholder="Select Union *"
+                          formControlName="union_id">
+                <mat-select-filter [placeholder]="'Search Union'"
+                                   *ngIf="select.focus"
+                                   [array]="unionName"
+                                   [displayMember]="'name'"
+                                   (filteredReturn)="filteredUnionList = $event">
+                </mat-select-filter>
+                <mat-option *ngFor="let item of filteredUnionList" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="">This field is required</mat-error>
+            </mat-form-field>
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.union_id && errorMessage.union_id.length">{{errorMessage.union_id[0]}}</p>
+          </c-col> 
+
+       
+
+          <c-col md="6">
+            <label cLabel for="inputEmail432">Email</label>
+            <input formControlName="user_name" cFormControl id="inputEmail432" type="email" placeholder="Email"/>
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.user_name && errorMessage.user_name.length">{{errorMessage.user_name[0]}}</p>
+          </c-col>
+          <c-col md="6">
+            <label cLabel for="inputPassword54">Password</label>
+            <input formControlName="password" cFormControl id="inputPassword41" type="password" />
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.password && errorMessage.password.length">{{errorMessage.password[0]}}</p>
+          </c-col>
+         
+          <c-col md="6">
+            <label cLabel for="inputPassword41">Phone Number</label>
+            <input formControlName="user_phone" cFormControl id="inputPassword41" type="text" placeholder="Phone Number" />
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.eiin && errorMessage.eiin.length">{{errorMessage.eiin[0]}}</p>
+          </c-col>
+
+
+          <c-col md="6">
+            <label cLabel for="inputPassword4">EIIn Number</label>
+            <input formControlName="eiin" cFormControl id="inputPassword43" type="number" placeholder="EIIn Number" />
+            <p class="validation-Message" *ngIf="errorMessage && errorMessage.eiin && errorMessage.eiin.length">{{errorMessage.eiin[0]}}</p>
+          </c-col>
+
+          <!-- <c-col md="2">
+            <label cLabel for="inputZip">Zip</label>
+            <input cFormControl id="inputZip" />
+             </c-col> -->
+
+          <c-col xs="12">
+            <button cButton type="submit">Add Institute</button>
+          </c-col>
+        </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+<!-- <div class="input-area">
+  <input type="text">
+  <div class="select-item">
+    <ul>
+      <li>select</li>
+    </ul>
+  </div>
+</div> -->
